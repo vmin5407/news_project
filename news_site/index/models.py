@@ -3,7 +3,7 @@ from django.db import models
 
 # Create your models here.
 class NewsCategory(models.Model):
-    category_name = models.CharField(max_length=32)
+    category_name = models.CharField(max_length=32, verbose_name="Название категории")
     added_date = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):

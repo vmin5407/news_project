@@ -2,9 +2,8 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Главная</title>
+    <title>Раздел</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css">
-</head>
 </head>
 <body style="background-color: rgb(253,249,249)">
 <div class="container">
@@ -15,6 +14,7 @@
                      width="50" height="50" alt="">
             </a>
             <span>Cherryground News</span>
+
         </div>
         <div class="col-md-3 text-end">
             <button type="button" class="btn" style="color: #f25477">Регистрация</button>
@@ -22,18 +22,8 @@
         </div>
     </header>
 </div>
-<div class="container d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
 
-    <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-        <li><a href="#" class="nav-link px-2 text-secondary">Главная</a></li>
-        {% for c in categories %}
-        <li class="nav-item me-2" >
-                <a href="/category/{{ c.id }}" class="nav-link active" aria-current="page" style="color: #f25477">{{ c }}</a>
-        </li>
-            {% endfor %}
-    </ul>
-</div>
-<div class="container px-4 py-5" id="icon-grid"><h2 class="pb-2 border-bottom">Новости</h2>
+<div class="container px-4 py-5" id="icon-grid"><h2 class="pb-2 border-bottom">Раздел "{{category}}"</h2>
     <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4 py-5">
         {% for n in news %}
         <div class="col d-flex ">
