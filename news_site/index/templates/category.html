@@ -1,11 +1,13 @@
 <!DOCTYPE html>
+{% load static %}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Раздел</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{% static 'css/category.css'%} ">
 </head>
-<body style="background-color: rgb(253,249,249)">
+<body>
 <div class="container">
     <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
         <div>
@@ -24,12 +26,13 @@
 </div>
 
 <div class="container px-4 py-5" id="icon-grid"><h2 class="pb-2 border-bottom">Раздел "{{category}}"</h2>
-    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4 py-5">
+      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4 py-5">
         {% for n in news %}
-        <div class="col d-flex ">
+        <div class="col d-flex m-2 card">
             <div class="col">
-                <h3 class="fw-bold mb-0 fs-4 text-body-emphasis">{{n.title}}</h3>
-                <p style="overflow: hidden;text-overflow: ellipsis;display: -webkit-box;-webkit-line-clamp: 4; -webkit-box-orient: vertical;">{{n.text}}</p>
+                <img src="{{news.photo.url}}" alt="{{n.title}}" >
+                <h4 class="fw-bold mb-0 fs-4 text-body-emphasis">{{n.title}}</h4>
+                <p>{{n.text}}</p>
                 <a href="/news/{{ n.id }}" class="nav-link active" style="color: #feadbb">Читать</a>
             </div>
 

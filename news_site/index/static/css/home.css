@@ -1,0 +1,28 @@
+body {
+    background-color: rgb(253, 249, 249);
+}
+
+p {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+}
+
+.card:hover {
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+
+.nav-link{
+    color: #f25477;
+}
+
+.nav-link:hover{
+    color: white;
+}
+
+.cat:hover{
+    background-color: #feadbb;
+    border-radius: 10%;
+}

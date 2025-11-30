@@ -22,12 +22,11 @@
     </header>
 </div>
 <div class="container p-5 mb-4 bg-body-tertiary rounded-3 my-centered-div mx-auto">
-    <div>
         <h1 class="display-5 fw-bold">{{news.title}}</h1>
         <br>
+        <img src="{{news.photo.url}}" alt="{{news.title}}" >
         <p class="col-md-8 fs-4">{{news.text}}</p>
          <h6 style="color: darkgray"><i>Статья была написана {{news.added_date}}</i></h6>
-    </div>
 </div>
 </body>
 </html>
