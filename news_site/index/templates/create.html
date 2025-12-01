@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Добавить статью</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{% static 'css/home.css'%} ">
+</head>
+<body>
+<div class="container">
+    <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
+        <div>
+            <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 link-body-emphasis text-decoration-none">
+                <img src="https://media.istockphoto.com/id/1142625085/vector/cute-flower-icon-in-flat-design-cherry-blossoms.jpg?s=612x612&w=0&k=20&c=TIN_uIMRGwVpi4VttwWViF0rhmHTvJG7PF1UcPHu6jI="
+                     width="50" height="50" alt=""><span>Cherryground News</span>
+            </a>
+
+        </div>
+        {% if user.is_authenticated %}
+        <div class="col-md-3 text-end">
+            <a href="/create" class="btn" role="button" style="color:  #f25477">+ Добавить статью</a>
+            <a href="/logout" class="btn" role="button" style="background-color: #f25477; color: white">Выйти</a>
+        </div>
+        {% else %}
+        <div class="col-md-3 text-end">
+            <a href="/register" class="btn" role="button" style="color:  #f25477">Регистрация</a>
+            <a href="{% url 'login' %}" class="btn" role="button"
+               style="background-color: #f25477; color: white">Войти</a>
+        </div>
+        {% endif %}
+    </header>
+</div>
+<div class="d-flex justify-content-center align-items-center" style="height:80vh;">
+    <form class="border border-secondary p-2 rounded shadow" method="post"  style="min-width: 470px;">
+        {% csrf_token %}
+        <h1 class="mb-3 text-center">Добавить статью</h1>
+        {{form.title}}<br>
+        {{form.text}}<br>
+        {{form.photo}}<br>
+        {{form.category}}<br>
+        <span>{{error}}</span>
+        <button type="submit" class="btn mb-3" style="background-color: #f25477; color: white; margin-left: 170px">
+            Добавить
+        </button>
+    </form>
+</div>
+</body>
+</html>
+</body>
+</html>

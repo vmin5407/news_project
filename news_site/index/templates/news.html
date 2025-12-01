@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
     <title>Новость</title>
@@ -11,22 +11,29 @@
         <div>
             <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 link-body-emphasis text-decoration-none">
                 <img src="https://media.istockphoto.com/id/1142625085/vector/cute-flower-icon-in-flat-design-cherry-blossoms.jpg?s=612x612&w=0&k=20&c=TIN_uIMRGwVpi4VttwWViF0rhmHTvJG7PF1UcPHu6jI="
-                     width="50" height="50" alt="">
+                     width="50" height="50" alt=""><span>Cherryground News</span>
             </a>
-            <span>Cherryground News</span>
+
         </div>
-        <div class="col-md-3 text-end">
-            <button type="button" class="btn" style="color: #f25477">Регистрация</button>
-            <button type="button" class="btn" style="background-color: #f25477; color: white">Войти</button>
-        </div>
+        {% if user.is_authenticated %}
+            <div class="col-md-3 text-end" >
+                 <a href="/create" class="btn" role="button" style="color:  #f25477">+ Добавить статью</a>
+                <a href="/logout" class="btn" role="button" style="background-color: #f25477; color: white">Выйти</a>
+            </div>
+            {% else %}
+            <div class="col-md-3 text-end" >
+                <a href="registration/register" class="btn" role="button" style="color:  #f25477">Регистрация</a>
+                <a href="{% url 'login' %}" class="btn" role="button" style="background-color: #f25477; color: white">Войти</a>
+            </div>
+            {% endif %}
     </header>
 </div>
-<div class="container p-5 mb-4 bg-body-tertiary rounded-3 my-centered-div mx-auto">
+<div class="container p-5 mb-4 bg-body-tertiary rounded-3 my-centered-div mx-auto" >
         <h1 class="display-5 fw-bold">{{news.title}}</h1>
         <br>
-        <img src="{{news.photo.url}}" alt="{{news.title}}" >
-        <p class="col-md-8 fs-4">{{news.text}}</p>
-         <h6 style="color: darkgray"><i>Статья была написана {{news.added_date}}</i></h6>
+        <img src="{{news.photo.url}}" alt="{{news.title}}" width="50%" style="margin: 25px">
+        <p class="col-md-8 fs-4" style="text-align: justify;">{{news.text}}</p>
+    <h6 style="color: darkgray"><i>Статья была написана {{news.added_date}}</i></h6>
 </div>
 </body>
 </html>

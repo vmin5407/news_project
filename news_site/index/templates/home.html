@@ -1,12 +1,11 @@
 <!DOCTYPE html>
 {% load static %}
-<html lang="en">
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
     <title>Главная</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="{% static 'css/home.css'%} ">
-</head>
 </head>
 <body>
 <div class="container">
@@ -14,25 +13,33 @@
         <div>
             <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 link-body-emphasis text-decoration-none">
                 <img src="https://media.istockphoto.com/id/1142625085/vector/cute-flower-icon-in-flat-design-cherry-blossoms.jpg?s=612x612&w=0&k=20&c=TIN_uIMRGwVpi4VttwWViF0rhmHTvJG7PF1UcPHu6jI="
-                     width="50" height="50" alt="">
+                     width="50" height="50" alt=""><span>Cherryground News</span>
             </a>
-            <span>Cherryground News</span>
+
         </div>
-        <div class="col-md-3 text-end">
-            <button type="button" class="btn" style="color: #f25477">Регистрация</button>
-            <button type="button" class="btn" style="background-color: #f25477; color: white">Войти</button>
-        </div>
+        {% if user.is_authenticated %}
+            <div class="col-md-3 text-end" >
+                 <a href="/create" class="btn" role="button" style="color:  #f25477">+ Добавить статью</a>
+                <a href="/logout" class="btn" role="button" style="background-color: #f25477; color: white">Выйти</a>
+            </div>
+        {% else %}
+            <div class="col-md-3 text-end" >
+                <a href="/register" class="btn" role="button" style="color:  #f25477">Регистрация</a>
+                <a href="{% url 'login' %}" class="btn" role="button" style="background-color: #f25477; color: white">Войти</a>
+            </div>
+        {% endif %}
     </header>
 </div>
+
 <div class="container d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
 
     <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-        <li><a href="#" class="nav-link px-2 text-secondary">Главная</a></li>
+        <li><a href="#" class="nav-link text-secondary">Главная</a></li>
         {% for c in categories %}
         <li class="nav-item me-2 cat" >
                 <a href="/category/{{ c.id }}" class="nav-link" aria-current="page">{{ c }}</a>
         </li>
-            {% endfor %}
+        {% endfor %}
     </ul>
 </div>
 <div class="container px-4 py-5" id="icon-grid">
@@ -41,7 +48,7 @@
         {% for n in news %}
         <div class="col d-flex m-2 card">
             <div class="col">
-                <img src="{{news.photo.url}}" alt="{{n.title}}" >
+                <img src="{{n.photo.url}}" alt="{{n.title}}" class="img-full" width="100%" >
                 <h4 class="fw-bold mb-0 fs-4 text-body-emphasis">{{n.title}}</h4>
                 <p>{{n.text}}</p>
                 <a href="/news/{{ n.id }}" class="nav-link active" style="color: #feadbb">Читать</a>
