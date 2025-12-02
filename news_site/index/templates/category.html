@@ -19,10 +19,11 @@
 
         </div>
         {% if user.is_authenticated %}
-            <div class="col-md-3 text-end" >
-                 <a href="/create" class="btn" role="button" style="color:  #f25477">+ Добавить статью</a>
+            <div class="col text-end" >
+                <a href="/create" class="btn" role="button" style="color:  #f25477">+ Добавить статью</a>
+                <a href="/saved" class="btn" role="button">&#x2661; Избранное</a>
                 <a href="/logout" class="btn" role="button" style="background-color: #f25477; color: white">Выйти</a>
-            </div>
+        </div>
             {% else %}
             <div class="col-md-3 text-end" >
                 <a href="registration/register" class="btn" role="button" style="color:  #f25477">Регистрация</a>
@@ -36,11 +37,11 @@
       <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4 py-5">
         {% for n in news %}
         <div class="col d-flex m-2 card">
-            <div class="col">
-                <img src="{{n.photo.url}}" alt="{{n.title}}" width="100%">
+            <a href="/news/{{ n.id }}"><img src="{{n.photo.url}}" alt="{{n.title}}" class="card-img-top"></a>
+            <div class="col card-body">
                 <h4 class="fw-bold mb-0 fs-4 text-body-emphasis">{{n.title}}</h4>
                 <p>{{n.text}}</p>
-                <a href="/news/{{ n.id }}" class="nav-link active" style="color: #feadbb">Читать</a>
+                <a href="/news/{{ n.id }}" class="nav-link active read" role="button">Читать</a>
             </div>
 
         </div>

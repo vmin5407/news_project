@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Избранное</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{% static 'css/saved.css'%} ">
+</head>
+<body>
+<div class="container">
+    <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
+        <div>
+            <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 link-body-emphasis text-decoration-none">
+                <img src="https://media.istockphoto.com/id/1142625085/vector/cute-flower-icon-in-flat-design-cherry-blossoms.jpg?s=612x612&w=0&k=20&c=TIN_uIMRGwVpi4VttwWViF0rhmHTvJG7PF1UcPHu6jI="
+                     width="50" height="50" alt=""><span>Cherryground News</span>
+            </a>
+
+        </div>
+        {% if user.is_authenticated %}
+        <div class="col text-end">
+            <a href="/create" class="btn" role="button" style="color:  #f25477">+ Добавить статью</a>
+            <a href="/saved" class="btn" role="button">&#x2661; Избранное</a>
+            <a href="/logout" class="btn" role="button" style="background-color: #f25477; color: white">Выйти</a>
+        </div>
+        {% else %}
+        <div class="col-md-3 text-end">
+            <a href="/register" class="btn" role="button" style="color:  #f25477">Регистрация</a>
+            <a href="{% url 'login' %}" class="btn" role="button"
+               style="background-color: #f25477; color: white">Войти</a>
+        </div>
+        {% endif %}
+    </header>
+</div>
+<div class="container px-4 py-5" id="icon-grid">
+    {% if saved|length > 0%}
+    <h2>Избранное</h2>
+    <hr>
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4 py-5">
+        {% for item in saved %}
+        <div class="col d-flex m-2 card">
+            <a href="/news/{{ item.article.id }}"><img src="{{ item.article.photo.url}}" alt="{{item.article.title}}"
+                                                       class="card-img-top"></a>
+            <div class="col card-body">
+                <h4 class="fw-bold mb-0 fs-4 text-body-emphasis">{{item.article.title}}</h4>
+                <p>{{item.article.text}}</p>
+
+                <div class="row cols-2">
+                    <a href="/news/{{ item.article.id }}" class="nav-link active read" role="button">Читать</a>
+                    <a href="/delete-from-saved/{{ item.article.id }}" class="nav-link active delete" role="button">Удалить</a>
+                </div>
+                <h6 style="color: rgba(152,146,147,0.7)" >Дата сохранения {{item.saved_date}}</h6>
+            </div>
+        </div>
+        {%endfor%}
+    </div>
+    {% else %}
+    <div class="container">
+        <h2>Избранное</h2>
+        <hr>
+        <h6 style="color: rgba(152,146,147,0.6)">Вы ещё не сохранили ни одну статью...</h6>
+    </div>
+    {% endif %}
+</div>
+</body>
+</html>

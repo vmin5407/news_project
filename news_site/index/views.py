@@ -60,6 +60,31 @@ class Register(views.View):
             return redirect('/')
 
 
+def add_to_saved(request, n_id):
+    new = models.News.objects.get(id=n_id)
+
+    saved_obj, created = models.SavedArticle.objects.get_or_create(
+            user_id=request.user.id,
+            article=new
+        )
+    return redirect(f"/news/{n_id}")
+
+
+def saved_page(request):
+    user_saved_articles = models.SavedArticle.objects.filter(user_id=request.user.id)
+    context = {
+        'saved': user_saved_articles
+    }
+    return render(request, 'saved.html', context)
+
+
+def delete_from_saved(request, pk):
+    models.SavedArticle.objects.filter(user_id=request.user.id,
+                                       article_id=pk
+                                       ).delete()
+    return redirect("/saved")
+
+
 def create(request):
     error = ""
     if request.method == 'POST':

@@ -16,10 +16,11 @@
 
         </div>
         {% if user.is_authenticated %}
-            <div class="col-md-3 text-end" >
-                <button class="btn" style="color:  #f25477">Добавить статью</button>
-                <button class="btn" style="background-color: #f25477; color: white">Выйти</button>
-            </div>
+            <div class="col text-end" >
+                <a href="/create" class="btn" role="button" style="color:  #f25477">+ Добавить статью</a>
+                <a href="/saved" class="btn" role="button">&#x2661; Избранное</a>
+                <a href="/logout" class="btn" role="button" style="background-color: #f25477; color: white">Выйти</a>
+        </div>
         {% else %}
             <div class="col-md-3 text-end" >
                 <a href="/register" class="btn" role="button" style="color:  #f25477">Регистрация</a>

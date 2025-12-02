@@ -1,0 +1,8 @@
+body {
+    background-color: rgb(253, 249, 249);
+}
+
+.save:hover{
+    background-color: #feadbb;
+    color: white;
+}

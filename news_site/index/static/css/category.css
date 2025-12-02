@@ -9,3 +9,14 @@ p {
     -webkit-line-clamp: 4;
     -webkit-box-orient: vertical;
 }
+
+.read{
+    color: #feadbb;
+    padding: 5px;
+    width: fit-content;
+    border-radius: 15%;
+}
+.read:hover{
+    background-color: #f25477;
+    color: white;
+}

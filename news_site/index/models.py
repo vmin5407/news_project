@@ -27,3 +27,16 @@ class News(models.Model):
     class Meta:
         verbose_name = "заголовок"
         verbose_name_plural = "заголовки"
+
+
+class SavedArticle(models.Model):
+    user_id = models.IntegerField()
+    article = models.ForeignKey(News, on_delete=models.CASCADE)
+    saved_date = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return str(self.user_id)
+
+    class Meta:
+        verbose_name = "Избранное"
+        verbose_name_plural = "Избранное"
