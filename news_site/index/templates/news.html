@@ -37,11 +37,14 @@
     <br>
     <img src="{{news.photo.url}}" alt="{{news.title}}" width="50%" style="margin: 25px">
     <p class="col-md-8 fs-4" style="text-align: justify;">{{news.text}}</p>
+    {% if user.is_authenticated %}
     <div class="col text-end">
         <h5 style="color: darkgray"><i>Статья была написана {{news.added_date}}</i></h5>
         <a href="/add-to-saved/{{news.id}}" class="btn save" role="button" >Добавить в избранное &#x2661;</a>
     </div>
-
+    {% else %}
+    <h5 style="color: darkgray"><i>Статья была написана {{news.added_date}}</i></h5>
+    {% endif %}
 </div>
 </body>
 </html>
